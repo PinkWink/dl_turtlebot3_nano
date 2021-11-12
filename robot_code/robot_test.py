@@ -9,6 +9,8 @@ ser_io = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), newline="\r", line_buf
 forward_vel = sys.argv[0]
 rotate_vel = sys.argv[1]
 
+print('forward : ' + str(forward_vel), ' rotate : ' + str(rotate_vel))
+
 while True:
 	command = str(forward_vel)+','+str(rotate_vel)+"\n"
 	ser.write(command.encode())
