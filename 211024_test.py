@@ -7,7 +7,7 @@ import io
 
 
 def drive(go, turn):
-  command = "$cVW," + str(go*1000) + ',' + str(turn*1000) + "\r\n"
+  command = str(go) + ',' + str(turn) + "\n"
   ser.write(command.encode())
   time.sleep(0.5)
 
@@ -19,7 +19,7 @@ def road_detection(save_model_path):
   model = tf.keras.models.load_model(save_model_path)
 
   while True:
-    capture = cv2.VideoCapture(0)
+    capture = cv2.VideoCapture(capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER))
     ret, frame = capture.read()
     time.sleep(0.5)
 
@@ -40,10 +40,10 @@ def road_detection(save_model_path):
 
 if __name__ == "__main__":
   ### input parameter ###############################################
-  save_model_path = '211025_mobile_robot.h5'
+  save_model_path = 'mobile_robot.h5'
   ################################################################### 
 
-  ser = serial.Serial(port='/dev/ttyTHS1', baudrate=115200)
+  ser = serial.Serial(port='/dev/ttyACM0', baudrate=115200)
   ser_io = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), newline="\r", line_buffering = True)
   
   road_detection(save_model_path)

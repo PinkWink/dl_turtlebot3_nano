@@ -6,10 +6,36 @@ import os
 import io
 import time
 
+def gstreamer_pipeline(
+    capture_width=320,
+    capture_height=180,
+    display_width=320, #1280,
+    display_height=180, #720,
+    framerate=60,
+    flip_method=0,
+):
+    return (
+        "nvarguscamerasrc ! "
+        "video/x-raw(memory:NVMM), "
+        "width=(int)%d, height=(int)%d, "
+        "format=(string)NV12, framerate=(fraction)%d/1 ! "
+        "nvvidconv flip-method=%d ! "
+        "video/x-raw, width=(int)%d, height=(int)%d, format=(string)BGRx ! "
+        "videoconvert ! "
+        "video/x-raw, format=(string)BGR ! appsink"
+        % (
+            capture_width,
+            capture_height,
+            framerate,
+            flip_method,
+            display_width,
+            display_height,
+        )
+    )
 
 def get_drive_data(go, turn):
 
-  command = "$cVW," + str(go*1000) + ',' + str(turn*1000) + "\r\n"
+  command = str(go) + ',' + str(turn) + "\n"
   ser.write(command.encode())
   time.sleep(0.5)
   
@@ -18,7 +44,7 @@ def get_drive_data(go, turn):
 
 def save_image(save_path, resize, index, go, turn):
 
-  capture = cv2.VideoCapture(0)
+  capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)
   ret, frame = capture.read()
   time.sleep(0.5)
 
@@ -33,7 +59,7 @@ def save_image(save_path, resize, index, go, turn):
 
 if __name__ == "__main__":
   ### input parameter ####################################
-  data_save_path = '/home/my_nano/211025_data/'
+  data_save_path = '/home/kiro/data/'
   resize_value = 24
   ########################################################
 
@@ -41,7 +67,7 @@ if __name__ == "__main__":
   file_num = len(file_list)
   i = file_num
 
-  ser = serial.Serial(port='/dev/ttyTHS1', baudrate=115200)
+  ser = serial.Serial(port='/dev/ttyACM0', baudrate=115200)
   ser_io = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), newline="\r", line_buffering = True)
 
   while 1: 
