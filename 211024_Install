@@ -1,0 +1,19 @@
+# password
+asdf1234
+
+# FAN ON
+sudo sh -c 'echo 100 > /sys/devices/pwm-fan/target_pwm'
+
+# Instal Jetpack 4.3
+https://developer.nvidia.com/jetpack-43-archive
+
+# install tensorflow (at Jetpack 4.3)
+https://makingrobot.tistory.com/97?category=938629
+
+# Package
+pip3 install pyserial keyboard opencv-python
+
+sudo bash -> python3 get_data.py
+
+# when import cv2 -> export OPENBLAS_CORETYPE=ARMV8 
+https://seoftware.tistory.com/112
