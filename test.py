@@ -46,7 +46,7 @@ def road_detection(save_model_path):
   model = tf.keras.models.load_model(save_model_path)
 
   while True:
-    capture = cv2.VideoCapture(capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER))
+    capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
     ret, frame = capture.read()
     time.sleep(0.5)
 
