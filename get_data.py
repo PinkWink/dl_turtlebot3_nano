@@ -74,38 +74,39 @@ if __name__ == "__main__":
   ser_io = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), newline="\r", line_buffering = True)
 
   while 1: 
-    if keyboard.is_pressed('w'):
+    key = input("input key : ")
+    if key=='w':
       go += 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('a'):
+    elif key=='a':
       turn += 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('d'):
+    elif key=='d':
       turn -= 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('x'):
+    elif key=='x':
       go -= 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('s'):
+    elif key=='s':
       go = 0
       turn = 0
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('o'):
+    elif key=='o':
       print("\nDrive Finish")
       go = 0 
       turn = 0 
