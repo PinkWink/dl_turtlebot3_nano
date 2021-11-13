@@ -44,7 +44,7 @@ def get_drive_data(go, turn):
 
 def save_image(save_path, resize, index, go, turn):
 
-  capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)
+  capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
   ret, frame = capture.read()
   time.sleep(0.5)
 
