@@ -59,7 +59,7 @@ def save_image(save_path, resize, index, go, turn):
 
 if __name__ == "__main__":
   ### input parameter ####################################
-  data_save_path = '/home/kiro/data/'
+  data_save_path = '/home/robot/data/'
   resize_value = 24
   ########################################################
 
