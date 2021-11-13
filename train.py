@@ -51,7 +51,7 @@ def LeNet(input_shape, num_actions):
 
 if __name__ == "__main__":
     ### input parameter ###############################################
-    data_path = "/home/kiro/data/" # data folder's path
+    data_path = "/home/robot/data/" # data folder's path
     save_model_path = 'mobile_robot.h5' # CNN model's save path
     data_shape = (24, 24, 3) # data(img)'s shpae = Network's input shape
     num_actions_of_data = 2 # Number of actions : go and turn -> 2
