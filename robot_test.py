@@ -11,7 +11,6 @@ rotate_vel = sys.argv[2]
 
 print('forward : ' + str(forward_vel), ' rotate : ' + str(rotate_vel))
 
-while True:
-	command = str(forward_vel)+','+str(rotate_vel)+"\n"
-	ser.write(command.encode())
-	time.sleep(1)
+time.sleep(0.1)
+command = str(forward_vel)+','+str(rotate_vel)+"\n"
+ser.write(command.encode())
