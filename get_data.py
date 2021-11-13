@@ -67,78 +67,48 @@ if __name__ == "__main__":
   file_num = len(file_list)
   i = file_num
 
+  go = 0
+  turn = 0
+
   ser = serial.Serial(port='/dev/ttyACM0', baudrate=115200)
   ser_io = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), newline="\r", line_buffering = True)
 
   while 1: 
     if keyboard.is_pressed('w'):
-      print("\nup")
-      go = -0.1
-      turn = 0
-      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
-      get_drive_data(go, turn)
-      i += 1
-
-    elif keyboard.is_pressed('i'):
-      print("\nup fast")
-      go = -0.2
-      turn = 0
-      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
-      get_drive_data(go, turn)
-      i += 1
-
-    elif keyboard.is_pressed('s'):
-      print("\ndown")
-      go = 0.1
-      turn = 0
-      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
-      get_drive_data(go, turn)
-      i += 1
-
-    elif keyboard.is_pressed('k'):
-      print("\ndown fast")
-      go = 0.2
-      turn = 0
-      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
-      get_drive_data(go, turn)
-      i += 1
-
-    elif keyboard.is_pressed('d'):
-      print("\nright")
-      go = -0.01
-      turn = 0.15
-      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
-      get_drive_data(go, turn)
-      i += 1
-
-    elif keyboard.is_pressed('l'):
-      print("\nright big")
-      go = -0.05
-      turn = 0.5
+      go += 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
     elif keyboard.is_pressed('a'):
-      print("\nleft")
-      go = -0.01
-      turn = -0.15
+      turn += 2 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
-    elif keyboard.is_pressed('j'):
-      print("\nleft big")
-      go = -0.05
-      turn = -0.5
+    elif keyboard.is_pressed('d'):
+      turn -= 2 
+      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
+      get_drive_data(go, turn)
+      i += 1
+
+    elif keyboard.is_pressed('x'):
+      go -= 2 
+      save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
+      get_drive_data(go, turn)
+      i += 1
+
+    elif keyboard.is_pressed('s'):
+      go = 0
+      turn = 0
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
 
     elif keyboard.is_pressed('o'):
       print("\nDrive Finish")
-      go = 0
-      turn = 0
+      go = 0 
+      turn = 0 
       save_image(save_path=data_save_path, resize=resize_value, index=i, go=go, turn=turn)
       get_drive_data(go, turn)
       i += 1
